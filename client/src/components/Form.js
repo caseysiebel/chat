@@ -1,7 +1,7 @@
 import React from 'react';
 
-import io from 'socket.io-client';
-const socket = io('http://localhost:3000');
+//import io from 'socket.io-client';
+//const socket = io('http://localhost:3001');
 
 class Form extends React.Component {
     constructor(props) {
@@ -9,10 +9,9 @@ class Form extends React.Component {
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
     }
     onSubmitHandler(e) {
-        e.preventDeafult();
+        e.preventDefault();
         const input = e.currentTarget.querySelector('input');
-        //this.props.sendMessage(input.value);
-        socket.emit('chat message', input.value);
+        this.props.socket.emit('chat message', input.value);
         input.value = '';
     }
     render() {
@@ -27,11 +26,5 @@ class Form extends React.Component {
         );
     }
 }
-const sendMessage = (msg) => ({
-    type: 'SEND_MESSAGE',
-    message: msg
-});
-const mapStateToProps = ({ }); 
-const connectedForm = connect(mapStateToProps, sendMessage)(Form);
 
-export default connectedForm;
+export default Form;
