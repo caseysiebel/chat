@@ -3,7 +3,7 @@ import React from 'react';
 //import io from 'socket.io-client';
 //const socket = io('http://localhost:3001');
 
-class Form extends React.Component {
+class MessageForm extends React.Component {
     constructor(props) {
         super(props);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
@@ -27,4 +27,4 @@ class Form extends React.Component {
     }
 }
 
-export default Form;
+export default MessageForm;

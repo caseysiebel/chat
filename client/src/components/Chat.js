@@ -1,8 +1,9 @@
 import React from 'react';
 
 import Login from './Login';
+
 import Messages from './Messages';
-import Form from './Form';
+import MessageForm from './MessageForm';
 
 import io from 'socket.io-client';
 
@@ -16,18 +17,12 @@ class Chat extends React.Component {
         });
     }
     render() {
-        const username = this.props.username;
-        if (!username) {
-            return <Login />
-        }
-        else {
-            return (
-                <div className="chat">
-                    <Messages />
-                    <Form socket={ this.socket }/>
-                </div>
-            );
-        }
+        return (
+            <div className="chat">
+                <Messages />
+                <MessageForm socket={ this.socket }/>
+            </div>
+        );
     }
 }
 

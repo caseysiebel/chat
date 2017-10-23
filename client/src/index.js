@@ -4,11 +4,11 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 
-import Chat from './components/Chat';
+import App from './components/App';
 
 ReactDOM.render(
     <Provider store={ store }>
-        <Chat/>
+        <App/>
     </Provider>,
     document.getElementById('app')
 );
