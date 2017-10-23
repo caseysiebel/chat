@@ -6,12 +6,12 @@ import Form from './Form';
 import io from 'socket.io-client';
 
 class Chat extends React.Component {
-
     constructor(props){
         super(props);
         this.socket = io('http://localhost:3001');
         this.socket.on('chat message', (msg) => {
-            console.log('client msg', msg)
+            console.log('client msg', msg);
+            this.props.messageReceived(msg);
         });
     }
     render() {
@@ -24,4 +24,16 @@ class Chat extends React.Component {
     }
 }
 
-export default Chat;
+const messageReceived = (msg) => ({ 
+    type: 'MESSAGE_RECEIVED',
+    payload: msg
+})
+const actions = { messageReceived };
+console.log('actions', actions);
+
+const mapStateToProps = (state) => ({ });
+
+import { connect } from 'react-redux';
+const connectedChat = connect(mapStateToProps, actions)(Chat);
+
+export default connectedChat;
