@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Login from './Login';
 import Messages from './Messages';
 import Form from './Form';
 
@@ -15,12 +16,18 @@ class Chat extends React.Component {
         });
     }
     render() {
-        return (
-            <div className="chat">
-                <Messages />
-                <Form socket={ this.socket }/>
-            </div>
-        );
+        const username = this.props.username;
+        if (!username) {
+            return <Login />
+        }
+        else {
+            return (
+                <div className="chat">
+                    <Messages />
+                    <Form socket={ this.socket }/>
+                </div>
+            );
+        }
     }
 }
 
@@ -31,7 +38,7 @@ const messageReceived = (msg) => ({
 const actions = { messageReceived };
 console.log('actions', actions);
 
-const mapStateToProps = (state) => ({ });
+const mapStateToProps = ({ username }) => ({ username });
 
 import { connect } from 'react-redux';
 const connectedChat = connect(mapStateToProps, actions)(Chat);
