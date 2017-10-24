@@ -9,7 +9,7 @@ class Messages extends React.Component {
         return (
             <ul className="messages">
             { 
-                messages && messages.map((msg, i) => <Message body={msg} key={i} />)
+                messages && messages.map((msg, i) => <Message data={msg} key={i} />)
             }
             </ul>
         );

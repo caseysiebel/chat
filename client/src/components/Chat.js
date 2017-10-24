@@ -17,10 +17,12 @@ class Chat extends React.Component {
         });
     }
     render() {
+        const { socket } = this;
+        const { username } = this.props;
         return (
             <div className="chat">
                 <Messages />
-                <MessageForm socket={ this.socket }/>
+                <MessageForm socket={ socket } username={ username } />
             </div>
         );
     }

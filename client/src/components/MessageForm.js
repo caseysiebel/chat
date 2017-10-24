@@ -11,7 +11,15 @@ class MessageForm extends React.Component {
     onSubmitHandler(e) {
         e.preventDefault();
         const input = e.currentTarget.querySelector('input');
-        this.props.socket.emit('chat message', input.value);
+        const msg = input.value; 
+        const { username, socket } = this.props;
+
+        const payload = {
+            text: msg,
+            sender: username,
+            timestamp: Date.now()
+        }
+        socket.emit('chat message', payload);
         input.value = '';
     }
     render() {
